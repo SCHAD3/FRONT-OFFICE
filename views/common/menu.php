@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="accueil">Accueil</a>
+        <a class="nav-link" aria-current="page" href="<?= URL; ?>accueil">Accueil</a>
         </li>
         <?php if(empty($_SESSION['profil'])) : ?>
         <li class="nav-item">
@@ -28,8 +28,8 @@
             Nos services
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="formProgrammeP">Votre programme personnalisé</a></li>
-            <li><a class="dropdown-item" href="pageConseil">Nos conseils mensuels</a></li>
+            <li><a class="dropdown-item" href="<?= URL; ?>formProgrammeP">Votre programme personnalisé</a></li>
+            <li><a class="dropdown-item" href="<?= URL; ?>pageConseil">Nos conseils mensuels</a></li>
           </ul>
         <li class="nav-item">
           <a class="nav-link" href="formContact">Contactez-nous</a>
