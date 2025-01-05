@@ -1,0 +1,121 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&family=Italiana&display=swap');
+
+*{
+  font-family:"GFS Didot", serif;
+  /* border: 2px solid red;   */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+h1{
+display: grid;
+justify-content: space-around;
+background-color:  rgba(161, 19, 6, 0.041);
+box-shadow:10px 5px 5px rgba(53, 52, 52, 0.059);  
+padding: 10px;
+margin-top: 10px;
+}
+/* GRID */
+
+/* .grid{
+  border: 2px solid skyblue;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+  min-height: 150px;
+} */
+.grid-container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  /* align-items: stretch; */
+}
+
+.grid img {
+ width: 80%;
+ margin: 10px auto; 
+ display: block;
+}
+
+form {
+  display: grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-areas:
+    "i1 i2"
+    "ta ta"
+    "bt bt";
+    align-content: center;
+}
+
+input,
+textarea {
+  margin: 5px;
+  border: 1px solid rgba(44, 43, 42, 0.687); 
+  padding: 10px; 
+  font-size: 1.1rem;
+  border-radius: 1px;
+  height: 40px;
+}
+
+textarea {
+  grid-area: ta;
+  resize: none;
+}
+
+#btn-submit {
+  grid-area: bt;
+  cursor: pointer;
+  background: rgba(161, 19, 6, 0.8);
+  transition: 0.2s;
+ border-radius: 0.25rem;
+ color:white;
+ padding: .375rem .75rem;
+
+}
+
+#btn-submit:hover {
+  background: rgb(10, 10, 11);
+  color: white;
+  box-shadow:10px 5px 5px rgba(53, 52, 52, 0.322); 
+}
+
+
+/* RESPONSIVE  */
+@media screen and (max-width: 900px) {
+  .grid-container {
+    display: block;
+  }
+  .grid-container img {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  /* .flexbox ul {
+    flex-direction: column;
+    align-items: center;
+  } */
+
+  form {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "i1"
+      "i2"
+      "ta"
+      "bt";
+  }
+  input,
+  textarea {
+    font-size: 0.8rem;
+  }
+}
+
+.grid img {
+  margin: 10px auto;
+  display: block;
+}
+  

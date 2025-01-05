@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=GFS+Didot&family=Italiana&display=swap");
+
+* {
+  font-family: "GFS Didot", serif!important;
+   /* border: 2px solid red;  */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  display: grid;
+  justify-content: space-around;
+  background-color: rgba(161, 19, 6, 0.041);
+  box-shadow: 10px 5px 5px rgba(53, 52, 52, 0.042);
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* Structure générale du formulaire */
+.form-container {
+  background-color: #f5f5f5; /* Fond gris clair pour le conteneur du formulaire */
+  padding: 20px;
+  border-radius: 8px;
+
+  margin: auto;
+}
+
+/* Style des fieldsets pour une meilleure visibilité */
+fieldset {
+  background-color: #ffffff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+/* Style des légendes */
+legend {
+  font-weight: bold;
+  /* font-size:2vw; */
+}
+
+ /* style des items de reponses */
+.option-container {
+  position: relative;
+  background-color: #f0f0f0; /* Fond gris clair pour chaque option */
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+   transition: box-shadow 0.3s; 
+}
+.option-container:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  
+}
+label {
+  display: block; /* Permet au label d'occuper toute la largeur du conteneur */
+  cursor: pointer; /* Change le curseur en main pour indiquer que c'est cliquable */
+  padding: 10px; /* Ajoute un espace autour du label pour une meilleure expérience utilisateur */
+}
+
+.option-container input {
+  position:absolute;
+  top: 50%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  
+ }
+
+
+/* Styles pour les boutons radio */
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+input[type="radio"]:checked {
+  background-color: #333;
+}
+
+/* Styles pour les cases à cocher */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  outline: 2px solid #333;
+  margin-right: 10px;
+}
+
+/* Style pour la coche (le "v") */
+input[type="checkbox"]:checked::before {
+  content: "\2714"; /*Unicode symbole "✔" (coche) */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px; 
+  color: #b31672;/* Couleur de la coche */
+} 
+
+/* Style du bouton personnalisé */
+.btn-p {
+  background-color: rgba(161, 19, 6, 0.8);
+  color: white;
+  transition: 0.2s !important;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-p:hover {
+  background: rgb(10, 10, 11) !important;
+  color: rgb(240, 240, 240) !important;
+  box-shadow: 10px 5px 5px rgba(53, 52, 52, 0.589);
+}
+
+/* Style du bouton inverse */
+.btn-inverse {
+  background-color: rgb(10, 10, 11) !important; /* Fond sombre */
+  color: rgb(240, 240, 240) !important; /* Texte clair */
+  transition: 0.2s !important;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-inverse:hover {
+  background-color: rgba(161, 19, 6, 0.8) !important; /* Fond rouge */
+  color: white !important; /* Texte blanc */
+  box-shadow: 10px 5px 5px rgba(53, 52, 52, 0.589);
+}
+
+
+/* blog */
+
+/* Styles pour les onglets */
+.tabs {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+  }
+  
+  .tab-left {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px 0 0px 20px;
+  }
+  
+  .tab-right {
+    border-radius: 0 20px 20px 0;
+    padding: 10px;
+  }
+  
+  /* Styles pour les articles */
+  .content {
+    padding: 20px;
+  }
+  
+  .article {
+    display: none;
+  }
+  
+  /* Affichage de l'article actif */
+  #article-psycho {
+    display: block;
+  }
+  
+  .tab.active {
+    background-color: rgba(161, 19, 6, 0.8) /* Couleur de fond pour l'onglet actif */
+  }
+  
+  .article-img {
+    float: left; 
+    margin-right: 20px; 
+    width: 200px; 
+    height: auto; /* Hauteur automatique pour conserver les proportions */
+  }
+  
+  .article p {
+    text-align: justify; 
+  }
+
+
+.swiper {
+  position: relative;
+  width: 240px;
+  height: 320px;
+  margin-bottom: 2rem;
+}
+
+.swiper-wrapper {
+  display: flex;
+}
+
+.swiper-slide {
+  border-radius: 18px;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: auto; /* Pour garder les proportions de l'image */
+  object-fit: cover;
+  border-radius: 18px;
+  border: 2px solid #f5efef; /* Ajoute une bordure grise */
+
+}
+
+
+
+
+
