@@ -5,6 +5,8 @@ class Securite {
         return htmlentities($chaine);
     }
 
+    
+
 public static function isConnect(){
     return(!empty($_SESSION['profil']));
 }

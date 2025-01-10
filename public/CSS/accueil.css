@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-h1 {
+h1,h2 {
   display: grid;
   justify-content: space-around;
   background-color: rgba(161, 19, 6, 0.041);
@@ -190,7 +190,7 @@ input[type="checkbox"]:checked::before {
   .article p {
     text-align: justify; 
   }
-
+/* SWIPER  */
 
 .swiper {
   position: relative;
@@ -219,7 +219,17 @@ input[type="checkbox"]:checked::before {
 
 }
 
+/* selection des jours sur compte/profil */
+/* Reset potentiels styles qui pourraient ajouter des contenus */
+.label-cell::before,
+.label-cell::after,
+.days-display::before,
+.days-display::after {
+  content: none !important;
+}
 
-
-
-
+.selected-days,
+.no-days {
+  /* Empêcher tout style potentiel d'ajouter du contenu */
+  display: inline-block;
+}
