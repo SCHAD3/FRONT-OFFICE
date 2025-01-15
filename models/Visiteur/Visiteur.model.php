@@ -67,4 +67,65 @@ class VisiteurManager extends MainManager {
                 return false;
             }
         }
-    }
+
+        public function bdAjoutPersonnalisationExercices($login, $zone, $niveau, $objectif) {
+            try {
+                error_log("Paramètres reçus - Login: $login, Zone: $zone, Niveau: $niveau, Objectif: $objectif");
+        
+                // Requête de sélection pour vérifier les exercices correspondant aux paramètres
+                $reqSelect = "
+                    SELECT e.ID_exercice
+                    FROM exercices e
+                    WHERE e.zone = :zone
+                      AND e.niveau_difficulte = :niveau
+                      AND e.type_exercice = :objectif
+                ";
+                $stmtSelect = $this->getBdd()->prepare($reqSelect);
+                $stmtSelect->bindValue(':zone', $zone, PDO::PARAM_STR);
+                $stmtSelect->bindValue(':niveau', $niveau, PDO::PARAM_STR);
+                $stmtSelect->bindValue(':objectif', $objectif, PDO::PARAM_STR);
+                $stmtSelect->execute();
+                $exercises = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+        
+                error_log("Exercices trouvés : " . json_encode($exercises));
+        
+                if (count($exercises) === 0) {
+                    error_log("Aucun exercice trouvé pour les paramètres fournis.");
+                    return false;
+                }
+        
+                // Insérer les exercices associés dans la table intermédiaire
+                $req = "
+                    INSERT INTO user_exercices (user_login, exercice_id)
+                    SELECT :login, e.ID_exercice
+                    FROM exercices e
+                    WHERE e.zone = :zone
+                      AND e.niveau_difficulte = :niveau
+                      AND e.type_exercice = :objectif
+                ";
+                $stmt = $this->getBdd()->prepare($req);
+        
+                // Liaison des paramètres utilisateur
+                $stmt->bindValue(':login', $login, PDO::PARAM_STR);
+                $stmt->bindValue(':zone', $zone, PDO::PARAM_STR);
+                $stmt->bindValue(':niveau', $niveau, PDO::PARAM_STR);
+                $stmt->bindValue(':objectif', $objectif, PDO::PARAM_STR);
+        
+                error_log("Requête prête à être exécutée : " . $stmt->queryString);
+        
+                $stmt->execute();
+        
+                // Log pour vérifier si les exercices ont été insérés
+                error_log("Nombre d'exercices insérés : " . $stmt->rowCount());
+        
+                // Retourne true si les exercices ont été correctement assignés
+                return ($stmt->rowCount() > 0);
+            } catch (PDOException $e) {
+                // Gestion d'erreur
+                error_log("Erreur lors de l'ajout des exercices pour l'utilisateur $login : " . $e->getMessage());
+                return false;
+            }
+        }
+        
+        
+    }        

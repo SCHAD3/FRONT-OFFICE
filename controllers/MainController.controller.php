@@ -1,6 +1,6 @@
 <?php
 
- require_once("models/MainManager.model.php");
+require_once("models/MainManager.model.php");
 require_once("controllers/Toolbox.class.php");
 
 abstract class MainController{

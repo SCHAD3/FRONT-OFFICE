@@ -98,9 +98,9 @@
               <form method="POST" action="<?= URL; ?>compte/validation_modifZone">
                 <div class="row p-2">
                   <div class="col-8"> <select name="zone" class="form-control">
-                      <option value="upper-body">Haut du corps</option>
-                      <option value="lower-body">Bas du corps</option>
-                      <option value="full-body">Corps complet</option>
+                      <option value="upper_body">Haut du corps</option>
+                      <option value="lower_body">Bas du corps</option>
+                      <option value="full_body">Corps complet</option>
                     </select> </div>
                   <div class="col-2"> <button class="btn btn-success" type="submit"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
                         <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
@@ -150,7 +150,7 @@
                       <option value="gently">Débutant(faible activité,sedentaire)</option>
                       <option value="balance">Intermediaire (frequence d'activité de 2h/semaine) </option>
                       <option value="advanced">Avancé (entrainement intensif)</option>
-                      
+
                     </select> </div>
                   <div class="col-2"> <button class="btn btn-success" type="submit"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
                         <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
@@ -188,58 +188,58 @@
             </div>
           </td>
           </tr>
-          
+
           <tr>
-  <td class="label-cell">Séances à suivre</td>
-  <td class="days-display">
-    <?php 
-    $jours = json_decode($utilisateur['jours'], true);
-    if (is_array($jours) && !empty($jours)) {
-      // Utilisation d'un div pour mieux contrôler l'affichage
-      echo '<div class="selected-days">';
-      echo htmlspecialchars(implode(", ", array_map('ucfirst', $jours)));
-      echo '</div>';
-    } else {
-      echo '<div class="no-days">Aucun jour sélectionné</div>';
-    }
-    ?>
-  </td>
-  <td class="edit-button-cell">
-    <button class="btn btn-light btn-sm" id="btnModifJours">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1-.11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-      </svg>
-    </button>
-  </td>
-  <td colspan="3" class="edit-form-cell">
-    <div id="modifJours" class="d-none">
-      <form method="POST" action="<?= URL; ?>compte/validation_modifJours">
-        <div class="row p-2">
-          <div class="col-8">
-            <?php
-            $joursSemaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
-            foreach($joursSemaine as $jour) {
-              $checked = in_array($jour, $jours) ? 'checked' : '';
-              echo '
+            <td class="label-cell">Séances à suivre</td>
+            <td class="days-display">
+              <?php
+              $jours = json_decode($utilisateur['jours'], true);
+              if (is_array($jours) && !empty($jours)) {
+                // Utilisation d'un div pour mieux contrôler l'affichage
+                echo '<div class="selected-days">';
+                echo htmlspecialchars(implode(", ", array_map('ucfirst', $jours)));
+                echo '</div>';
+              } else {
+                echo '<div class="no-days">Aucun jour sélectionné</div>';
+              }
+              ?>
+            </td>
+            <td class="edit-button-cell">
+              <button class="btn btn-light btn-sm" id="btnModifJours">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1-.11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                </svg>
+              </button>
+            </td>
+            <td colspan="3" class="edit-form-cell">
+              <div id="modifJours" class="d-none">
+                <form method="POST" action="<?= URL; ?>compte/validation_modifJours">
+                  <div class="row p-2">
+                    <div class="col-8">
+                      <?php
+                      $joursSemaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+                      foreach ($joursSemaine as $jour) {
+                        $checked = in_array($jour, $jours) ? 'checked' : '';
+                        echo '
               <div class="form-check form-check-inline mb-2">
-                <input class="form-check-input" type="checkbox" name="jours[]" id="jour_'.$jour.'" value="'.$jour.'" '.$checked.'>
-                <label class="form-check-label" for="jour_'.$jour.'">'.ucfirst($jour).'</label>
+                <input class="form-check-input" type="checkbox" name="jours[]" id="jour_' . $jour . '" value="' . $jour . '" ' . $checked . '>
+                <label class="form-check-label" for="jour_' . $jour . '">' . ucfirst($jour) . '</label>
               </div>';
-            }
-            ?>
-          </div>
-          <div class="col-2">
-            <button class="btn btn-success" type="submit">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </td>
-</tr>
+                      }
+                      ?>
+                    </div>
+                    <div class="col-2">
+                      <button class="btn btn-success" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                          <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </td>
+          </tr>
 
           <tr>
             <td>Durée maximale de la séance</td>
@@ -272,96 +272,111 @@
 
     <h2 class="mb-3 mt-3">Démarrer ma séance</h2>
 
-    <div class="swiper Slider-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
-        </div>
-        <div class="swiper-slide">
-          <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
-        </div>
-        <div class="swiper-slide">
-          <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
-        </div>
-        <div class="swiper-slide">
-          <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
-        </div>
-        <div class="swiper-slide">
-          <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
-        </div>
-        <div class="swiper-slide">
-          <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
-        </div>
-      </div>
-      <div class="d-flex align-items-center justify-content-center mt-1">
-        <button id="drawCard" class="btn btn-inverse mt-1 mx-auto d-block">Je pioche mes exercices</button>
-        <div id="loading" class="spinner-border text-danger ms-3" role="status" style="display: none;">
-          <span class="sr-only">Chargement...</span>
-        </div>
-      </div>
+<div class="swiper Slider-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
+    </div>
+    <div class="swiper-slide">
+      <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
+    </div>
+    <div class="swiper-slide">
+      <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
+    </div>
+    <div class="swiper-slide">
+      <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
+    </div>
+    <div class="swiper-slide">
+      <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
+    </div>
+    <div class="swiper-slide">
+      <img src="<?= URL; ?>public/Assets/images/logo-rectangle.png" alt="Image de la diapositive" />
+    </div>
+  </div>
+  <div class="d-flex align-items-center justify-content-center mt-1">
+    <button id="drawCard" class="btn btn-inverse mt-1 mx-auto d-block">Je pioche mes exercices</button>
+    <div id="loading" class="spinner-border text-danger ms-3" role="status" style="display: none;">
+      <span class="sr-only">Chargement...</span>
     </div>
   </div>
 </div>
 </div>
+</div>
+</div>
 
 
+<!-- Vérification des données -->
+<pre>
+<?php var_dump($exercices); ?>
+</pre> 
 
 <div id="exerciseSlider" class="carousel slide mt-5 position-relative z-index-3" data-bs-ride="carousel" data-bs-interval="600" style="display: none;">
-  <div class="carousel-inner">
-    <!-- Exercice 1 -->
-    <div class="carousel-item active">
-      <div class="row no-gutters">
-        <!-- Colonne pour l'image -->
-        <div class="col-md-6">
-          <img src="<?= URL; ?>public/Assets/images/sumo-squat-advance.jpg" class="d-block w-100" alt="Exercice 1">
-        </div>
-        <!-- Colonne pour la description -->
-        <div class="col-md-6 d-flex flex-column justify-content-center p-4">
-          <h5>Squats</h5>
-          <p>Faites 15 répétitions de squats pour renforcer vos jambes.</p>
-        </div>
-      </div>
+    <div class="carousel-inner">
+        <?php if (!empty($exercices)): ?>
+            <?php foreach($exercices as $index => $exercice): ?>
+                <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                    <div class="row no-gutters">
+                        <!-- Colonne pour l'image -->
+                        <div class="col-md-6">
+                            <img src="<?= URL; ?>public/Assets/images/<?= htmlspecialchars($exercice['image_url']) ?>" 
+                                 class="d-block w-100" 
+                                 alt="<?= htmlspecialchars($exercice['nom_exercice']) ?>">
+                        </div>
+                        <!-- Colonne pour la description -->
+                        <div class="col-md-6 d-flex flex-column justify-content-center p-4">
+                            <!-- En-tête avec ID, nom, zone et niveau -->
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-info text-white rounded-circle d-flex align-items-center justify-content-center" 
+                                     style="width: 40px; height: 40px;">
+                                    <?= $exercice['ID_exercice'] ?>
+                                </div>
+                                <div class="ms-3">
+                                    <h5 class="mb-1"><?= htmlspecialchars($exercice['nom_exercice']) ?></h5>
+                                    <div class="d-flex gap-2">
+                                        <span class="badge bg-dark"><?= htmlspecialchars($exercice['zone']) ?></span>
+                                        <span class="badge bg-danger"><?= htmlspecialchars($exercice['niveau_difficulte']) ?></span>
+                                        <span class="badge bg-warning"><?= htmlspecialchars($exercice['type_exercice']) ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Description des étapes -->
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-2">Description des étapes :</h6>
+                                <p><?= nl2br(htmlspecialchars($exercice['description_etapes'])) ?></p>
+                            </div>
+                            
+                            <!-- Bienfaits -->
+                            <div>
+                                <h6 class="text-muted mb-2">Bienfaits :</h6>
+                                <p><?= nl2br(htmlspecialchars($exercice['bienfaits'])) ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="carousel-item active">
+                <div class="row no-gutters">
+                    <div class="col-md-12 d-flex flex-column justify-content-center p-4">
+                        <h5>Aucun exercice disponible</h5>
+                        <p>Veuillez vérifier vos critères ou vos données utilisateur.</p>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
-    <!-- Exercice 2 -->
-    <div class="carousel-item">
-      <div class="row no-gutters">
-        <!-- Colonne pour l'image -->
-        <div class="col-md-6">
-          <img src="<?= URL; ?>public/Assets/images/card2.jpg" class="d-block w-100" alt="Exercice 2">
-        </div>
-        <!-- Colonne pour la description -->
-        <div class="col-md-6 d-flex flex-column justify-content-center p-4">
-          <h5>Pompes</h5>
-          <p>Effectuez 10 pompes pour travailler le haut de votre corps.</p>
-        </div>
-      </div>
-    </div>
-    <!-- Exercice 3 -->
-    <div class="carousel-item">
-      <div class="row no-gutters">
-        <!-- Colonne pour l'image -->
-        <div class="col-md-6">
-          <img src="<?= URL; ?>public/Assets/images/card3.jpg" class="d-block w-100" alt="Exercice 3">
-        </div>
-        <!-- Colonne pour la description -->
-        <div class="col-md-6 d-flex flex-column justify-content-center p-4">
-          <h5>Planche</h5>
-          <p>Maintenez une position de planche pendant 30 secondes.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Contrôles du carrousel -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#exerciseSlider" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Précédent</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#exerciseSlider" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Suivant</span>
-  </button>
+    <!-- Contrôles du carrousel -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#exerciseSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#exerciseSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+    </button>
 </div>
-</div>
-</div>
-</div>
+
+
+

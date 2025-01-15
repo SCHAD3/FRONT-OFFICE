@@ -42,15 +42,16 @@
 
       <!-- Colonne de la grille -->
 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+  
   <!-- Informations de contact -->
   <h6 class="text-uppercase fw-bold mb-4">suivez-nous</h6>
-  <p><i class="fas fa-home me-3"></i>Marseille, France</p>
-  <p>
-    <i class="fas fa-envelope me-3"></i>info@coachMe.com
-  </p>
   <p>
     <!-- Liens vers les réseaux sociaux -->
-    <a href="https://www.instagram.com/" class="text-reset me-3"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.instagram.com/" class="text-reset me-3 "><i class="fab fa-instagram"></i></a>
+  </p>
+  <p><i class="fas fa-home me-3 "></i>Marseille, France</p>
+  <p>
+    <i class="fas fa-envelope me-3"></i>info@coachMe.com
   </p>
 </div>
 

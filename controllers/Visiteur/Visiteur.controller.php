@@ -81,23 +81,60 @@ class VisiteurController extends MainController
     }
 
     public function validation_creationCompte($login, $password, $mail, $formData = []) {
-        if($this->visiteurManager->isLoginDispo($login)) {
-            $passwordCrypte = password_hash($password, PASSWORD_DEFAULT);
-            $clef = rand(0, 9999);
+        // Vérification si le login est disponible
+        error_log("Vérification de la disponibilité du login: $login");
+        if ($this->visiteurManager->isLoginDispo($login)) {
+            error_log("Login disponible: $login");
     
-            if($this->visiteurManager->bdCreationCompte($login, $passwordCrypte, $mail, $clef, $formData)) {
-                Toolbox::ajouterMessageAlerte("Votre compte a été créé avec succès. Un e-mail de validation vous a été envoyé !", Toolbox::COULEUR_VERTE);
-                header("Location:".URL."formLogin");
+            $passwordCrypte = password_hash($password, PASSWORD_DEFAULT);
+            $clef = rand(0, 9999); // Générer une clé de validation
+        
+            // Tentative de création du compte utilisateur
+            if ($this->visiteurManager->bdCreationCompte($login, $passwordCrypte, $mail, $clef, $formData)) {
+                error_log("Compte créé pour le login: $login");
+    
+                // Vérification et association des préférences
+                $zone = $formData['zone'] ?? '';
+                $niveau = $formData['niveau'] ?? '';
+                $objectif = $formData['objectif'] ?? '';
+    
+                // Log les paramètres
+                error_log("Paramètres d'association - Zone: $zone, Niveau: $niveau, Objectif: $objectif");
+    
+                // Appel pour associer les préférences et exercices
+                if ($this->visiteurManager->bdAjoutPersonnalisationExercices($login, $zone, $niveau, $objectif)) {
+                    error_log("Exercices associés pour le login: $login");
+                } else {
+                    error_log("Échec de l'association des exercices pour le login: $login");
+                }
+        
+                Toolbox::ajouterMessageAlerte(
+                    "Votre compte a été créé avec succès. Un e-mail de validation vous a été envoyé !",
+                    Toolbox::COULEUR_VERTE
+                );
+                header("Location:" . URL . "formLogin");
             } else {
-                Toolbox::ajouterMessageAlerte("Erreur lors de la création du compte. Veuillez recommencer", Toolbox::COULEUR_ROUGE);
-                header("Location:".URL."creationCompte");
+                error_log("Échec de la création du compte pour le login: $login");
+    
+                Toolbox::ajouterMessageAlerte(
+                    "Erreur lors de la création du compte. Veuillez recommencer",
+                    Toolbox::COULEUR_ROUGE
+                );
+                header("Location:" . URL . "creationCompte");
             }
         } else {
-            Toolbox::ajouterMessageAlerte("Le login saisi n'est pas disponible. Veuillez en choisir un autre", Toolbox::COULEUR_ORANGE);
-            header("Location:".URL."creationCompte");
+            error_log("Login non disponible: $login");
+    
+            Toolbox::ajouterMessageAlerte(
+                "Le login saisi n'est pas disponible. Veuillez en choisir un autre",
+                Toolbox::COULEUR_ORANGE
+            );
+            header("Location:" . URL . "creationCompte");
         }
     }
-
+    
+    
+    
     public function pageErreur($msg){
         parent::pageErreur($msg);
     }

@@ -6,7 +6,8 @@ echo $utilisateur['login']."-" .$utilisateur['password'];
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Eclore en force,<br> fleurir en courage !</h1>
-        <p class="lead text-muted">Bienvenue dans votre espace de developpement personnel. <br>                                                Pas le temps de vous rendre dans une salle de sport ?<br> L'équipe Coach.Me vous accompagne à chaque etape de votre projet de remise en forme à domicile. </p>
+        <p class="lead text-muted">Bienvenue dans votre espace de developpement personnel. <br>
+        Pas le temps de vous rendre dans une salle de sport ?<br> L'équipe Coach.Me vous accompagne à chaque etape de votre projet de remise en forme à domicile. </p>
         <p>
     <a href="<?= URL ?>pageConseil" class="btn btn-p my-2">Nos conseils du mois</a>
     <a href="#" class="btn btn-p my-2">Mon programme sur mesure</a>

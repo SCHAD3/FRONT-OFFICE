@@ -5,7 +5,7 @@ abstract class MainManager extends Model{
 
     public function getDatas(){
         $req = $this->getBdd()->prepare("SELECT * FROM table");
-         $req->execute();
+        $req->execute();
         $datas = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
         return $datas;

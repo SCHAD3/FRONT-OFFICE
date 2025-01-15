@@ -114,6 +114,7 @@ class UtilisateurManager extends MainManager
     $stmt->closeCursor();
     return $modif;
   }
+  
   public function bdModifNiveau($login, $niveau)
   {
     $req = "UPDATE user SET niveau = :niveau WHERE login = :login";

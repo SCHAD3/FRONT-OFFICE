@@ -72,22 +72,22 @@
         </div>
     </fieldset>
 
-     <!-- Question 5 : Zone du Corps à Cibler -->
-     <fieldset>
-        <legend>Quelle zone du corps souhaitez-vous cibler principalement ?</legend>
-        <div class="option-container">
-            <input type="radio" id="haut-corps" name="zone" value="upper-body">
-            <label for="haut-corps">Haut du corps (Upper Body)</label>
-        </div>
-        <div class="option-container">
-            <input type="radio" id="bas-corps" name="zone" value="lower-body">
-            <label for="bas-corps">Bas du corps (Lower Body)</label>
-        </div>
-        <div class="option-container">
-            <input type="radio" id="corps-entier" name="zone" value="full-body">
-            <label for="full-body">Corps entier (Full Body)</label>
-        </div>
-    </fieldset>
+    <fieldset>
+    <legend>Quelle zone du corps souhaitez-vous cibler principalement ?</legend>
+    <div class="option-container">
+        <input type="radio" id="haut-corps" name="zone" value="upper_body">
+        <label for="haut-corps">Haut du corps (Upper Body)</label>
+    </div>
+    <div class="option-container">
+        <input type="radio" id="bas-corps" name="zone" value="lower_body">
+        <label for="bas-corps">Bas du corps (Lower Body)</label>
+    </div>
+    <div class="option-container">
+        <input type="radio" id="corps-entier" name="zone" value="full_body">
+        <label for="corps-entier">Corps entier (Full Body)</label>
+    </div>
+</fieldset>
+
 
 
     <!-- Question 6 : Durée disponible par séance de sport -->

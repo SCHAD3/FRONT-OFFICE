@@ -1,0 +1,145 @@
+
+version static du slider 
+
+<!-- <div id="exerciseSlider" class="carousel slide mt-5 position-relative z-index-3" data-bs-ride="carousel" data-bs-interval="600" style="display: none;">
+<div class="carousel-inner">
+<!-- Exercice 1 -->
+<div class="carousel-item active">
+  <div class="row no-gutters">
+    <!-- Colonne pour l'image -->
+    <div class="col-md-6">
+      <!-- <img src="<?= URL; ?>public/Assets/images/sumo-squat-advance.jpg" class="d-block w-100" alt="Exercice 1"> -->
+    </div>
+    <!-- Colonne pour la description -->
+    <div class="col-md-6 d-flex flex-column justify-content-center p-4">
+      <h5>Squats</h5>
+      <p>Faites 15 répétitions de squats pour renforcer vos jambes.</p>
+    </div>
+  </div>
+</div>
+<!-- Exercice 2 -->
+<div class="carousel-item">
+  <div class="row no-gutters">
+    <!-- Colonne pour l'image -->
+    <div class="col-md-6">
+      <!-- <img src="<?= URL; ?>public/Assets/images/card2.jpg" class="d-block w-100" alt="Exercice 2"> -->
+    </div>
+    <!-- Colonne pour la description -->
+    <div class="col-md-6 d-flex flex-column justify-content-center p-4">
+      <h5>Pompes</h5>
+      <p>Effectuez 10 pompes pour travailler le haut de votre corps.</p>
+    </div>
+  </div>
+</div>
+<!-- Exercice 3 -->
+<div class="carousel-item">
+  <div class="row no-gutters">
+    <!-- Colonne pour l'image -->
+    <div class="col-md-6">
+      <!-- <img src="<?= URL; ?>public/Assets/images/card3.jpg" class="d-block w-100" alt="Exercice 3"> -->
+    </div>
+    <!-- Colonne pour la description -->
+    <div class="col-md-6 d-flex flex-column justify-content-center p-4">
+      <h5>Planche</h5>
+      <p>Maintenez une position de planche pendant 30 secondes.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Contrôles du carrousel
+<button class="carousel-control-prev" type="button" data-bs-target="#exerciseSlider" data-bs-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Précédent</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#exerciseSlider" data-bs-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span>
+<span class="visually-hidden">Suivant</span>
+</button>
+</div>
+</div>
+</div> -->
+</div> -->
+
+
+public function validation_creationCompte($login, $password, $mail, $formData = []) {
+    // Vérification si le login est disponible
+    if ($this->visiteurManager->isLoginDispo($login)) {
+        $passwordCrypte = password_hash($password, PASSWORD_DEFAULT);
+        $clef = rand(0, 9999); // Générer une clé de validation
+
+        // Tentative de création du compte utilisateur
+        if ($this->visiteurManager->bdCreationCompte($login, $passwordCrypte, $mail, $clef, $formData)) {
+            // Vérification et association des préférences
+            $zone = $formData['zone'] ?? '';
+            $niveau = $formData['niveau'] ?? '';
+            $objectif = $formData['objectif'] ?? '';
+
+            // Appel pour associer les préférences et exercices
+            $this->visiteurManager-> bdAjoutPersonnalisationExercices($login, $zone, $niveau, $objectif);
+
+            Toolbox::ajouterMessageAlerte(
+                "Votre compte a été créé avec succès. Un e-mail de validation vous a été envoyé !",
+                Toolbox::COULEUR_VERTE
+            );
+            header("Location:" . URL . "formLogin");
+        } else {
+            Toolbox::ajouterMessageAlerte(
+                "Erreur lors de la création du compte. Veuillez recommencer",
+                Toolbox::COULEUR_ROUGE
+            );
+            header("Location:" . URL . "creationCompte");
+        }
+    } else {
+        Toolbox::ajouterMessageAlerte(
+            "Le login saisi n'est pas disponible. Veuillez en choisir un autre",
+            Toolbox::COULEUR_ORANGE
+        );
+        header("Location:" . URL . "creationCompte");
+    }
+}
+
+
+version initiale 
+
+
+public function validation_creationCompte($login, $password, $mail, $formData = []) {
+        if($this->visiteurManager->isLoginDispo($login)) {
+            $passwordCrypte = password_hash($password, PASSWORD_DEFAULT);
+            $clef = rand(0, 9999);
+    
+            if($this->visiteurManager->bdCreationCompte($login, $passwordCrypte, $mail, $clef, $formData)) {
+                Toolbox::ajouterMessageAlerte("Votre compte a été créé avec succès. Un e-mail de validation vous a été envoyé !", Toolbox::COULEUR_VERTE);
+                header("Location:".URL."formLogin");
+            } else {
+                Toolbox::ajouterMessageAlerte("Erreur lors de la création du compte. Veuillez recommencer", Toolbox::COULEUR_ROUGE);
+                header("Location:".URL."creationCompte");
+            }
+        } else {
+            Toolbox::ajouterMessageAlerte("Le login saisi n'est pas disponible. Veuillez en choisir un autre", Toolbox::COULEUR_ORANGE);
+            header("Location:".URL."creationCompte");
+        }
+    }
+
+
+avant modif
+
+     public function validation_modifNiveau($niveau)
+  {
+    if ($this->utilisateurManager->bdModifNiveau($_SESSION['profil']['login'], $niveau)) {
+      Toolbox::ajouterMessageAlerte("La modification du niveau est effectuée", Toolbox::COULEUR_VERTE);
+    } else {
+      Toolbox::ajouterMessageAlerte("Aucune modification effectuée", Toolbox::COULEUR_ROUGE);
+    }
+    header("Location: " . URL . "compte/profil");
+  }
+
+  public function validation_modifObjectif($objectif)
+  {
+    if ($this->utilisateurManager->bdModifObjectif($_SESSION['profil']['login'], $objectif)) {
+      Toolbox::ajouterMessageAlerte("La modification de l'objectif personnalisé est effectuée", Toolbox::COULEUR_VERTE);
+    } else {
+      Toolbox::ajouterMessageAlerte("Aucune modification effectuée", Toolbox::COULEUR_ROUGE);
+    }
+    header("Location: " . URL . "compte/profil");
+  }
